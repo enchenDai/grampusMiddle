@@ -1,0 +1,73 @@
+spring:
+    datasource:
+        palmset:
+            name: grampus
+            url: jdbc:mysql://192.168.16.126:3306/turkey?useUnicode=true&characterEncoding=utf8
+            username: root
+            password: root
+            # 使用druid数据源
+            type: com.alibaba.druid.pool.DruidDataSource
+            driver-class-name: com.mysql.jdbc.Driver
+            filters: stat
+            maxActive: 20
+            initialSize: 1
+            maxWait: 60000
+            minIdle: 1
+            timeBetweenEvictionRunsMillis: 60000
+            minEvictableIdleTimeMillis: 300000
+            validationQuery: select 'x'
+            testWhileIdle: true
+            testOnBorrow: false
+            testOnReturn: false
+            poolPreparedStatements: true
+            maxOpenPreparedStatements: 20
+        middleware:
+            name: middleware
+            url: jdbc:mysql://localhost:3306/middleware?useUnicode=true&characterEncoding=utf8
+            username: root
+            password: '!QAZxsw2'
+            # 使用druid数据源
+            type: com.alibaba.druid.pool.DruidDataSource
+            driver-class-name: com.mysql.jdbc.Driver
+            filters: stat
+            maxActive: 20
+            initialSize: 1
+            maxWait: 60000
+            minIdle: 1
+            timeBetweenEvictionRunsMillis: 60000
+            minEvictableIdleTimeMillis: 300000
+            validationQuery: select 'x'
+            testWhileIdle: true
+            testOnBorrow: false
+            testOnReturn: false
+            poolPreparedStatements: true
+            maxOpenPreparedStatements: 20
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: MYSQL
+        show-sql: true
+        properties:
+            hibernate.id.new_generator_mappings: true
+            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: true
+    application:
+      name: grampus-middleware
+
+server:
+    port: 9999
+
+
+palm:
+    base-url: http://192.168.16.240:8080/palmgw/app70dbb81c330d4c68a16e7dda8b9276a1/
+    operation-url: C1001.htm # 掌脉 采集、注册、删除 url
+    palm-verify-url: C2001.htm # 1:1 识别
+    palm-identify-url: C2003.htm # 1:1 认证
+    palmset-insert-url: C3002.htm
+    palmset-update-url: C3003.htm
+    palmset-detail-url: C3004.htm
+    palmset-person-url: C3001.htm # palmset 批量追加/删除 人员信息
+    person-valid-url: C4001.htm # 查询业务系统下 userID 是否已经存在
+    palmset-name-list-query-url: C4002.htm # 获取全部掌脉集
+
+
