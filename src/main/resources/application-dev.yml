@@ -72,9 +72,9 @@ palm:
 
 luis:
     text-analysis:
-        baseUrl: https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/0220c5a6-162c-4294-956f-44f897bd58bf?subscription-key=
-        key: 9a61d397342640cda626f877bc5d954f
-        suffixUrl: &verbose=true&timezoneOffset=0&q=
+        baseUrl: https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/0220c5a6-162c-4294-956f-44f897bd58bf?subscription-key=9a61d397342640cda626f877bc5d954f&verbose=true&timezoneOffset=0&q=
+#        key: 9a61d397342640cda626f877bc5d954f
+#        suffixUrl: &verbose=true&timezoneOffset=0&q=
 
 
 

@@ -19,17 +19,13 @@ public class LuisResource {
     @Autowired
     LuisService luisService;
 
-    /**
-     * 创建/更新/删除 掌脉信息
-     *
-     * @param palmDTO
-     * @return
-     */
     @RequestMapping(value = "/text/analysis", method = RequestMethod.GET)
     public ResponseEntity<WebResult> personRegister(@RequestParam String targetText) {
 
         return ResponseEntity.ok(
-                WebResult.ok()
+                WebResult.ok(
+                        luisService.textAnalysis(targetText)
+                )
         );
     }
 

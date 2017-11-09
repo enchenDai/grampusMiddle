@@ -1,9 +1,5 @@
 package com.deepblue.middleware.service;
 
-import com.alibaba.common.lang.StringUtil;
-import com.deepblue.middleware.exception.SystemException;
-import com.deepblue.middleware.service.util.ErrorCodeHandler;
-import com.deepblue.middleware.web.rest.vm.ResultCode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,11 +13,11 @@ public class LuisClientService {
     @Value("${luis.text-analysis.baseUrl:}")
     private String luisAnalysisBaseUrl;
 
-    @Value("${luis.text-analysis.key:}")
-    private String luisAnalysisKey;
-
-    @Value("${luis.text-analysis.suffixUrl:}")
-    private String luisAnalysissuffixUrl;
+//    @Value("${luis.text-analysis.key:}")
+//    private String luisAnalysisKey;
+//
+//    @Value("${luis.text-analysis.suffixUrl:}")
+//    private String luisAnalysissuffixUrl;
 
     private RestTemplate restTemplate = new RestTemplate();
 
@@ -34,17 +30,12 @@ public class LuisClientService {
     public String textAnalysis(String targetText) {
         String result = null;
         try {
-            result = restTemplate.postForObject(luisAnalysisBaseUrl + luisAnalysisKey + luisAnalysissuffixUrl + targetText, requestEntity, String.class);
+            //result = restTemplate.postForObject(luisAnalysisBaseUrl + luisAnalysisKey + luisAnalysissuffixUrl + targetText, TextAnalysisRes, String.class);
+            result = restTemplate.getForEntity(luisAnalysisBaseUrl + targetText, String.class).getBody();
         } catch (Exception e) {
-            throw new RuntimeException("palm operation post exception : " + e.getMessage());
+            throw new RuntimeException("text analysis exception : " + e.getMessage());
         }
-
-
-        if (StringUtil.contains(result, "Application")) {
-            return convertXMLToJson(result).toString();
-        } else {
-            throw new SystemException(ResultCode.PALM_ERROR, ErrorCodeHandler.errorCodeConvert(result));
-        }
+        return result;
     }
 
 
