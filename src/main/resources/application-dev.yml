@@ -70,4 +70,14 @@ palm:
     person-valid-url: C4001.htm # 查询业务系统下 userID 是否已经存在
     palmset-name-list-query-url: C4002.htm # 获取全部掌脉集
 
+luis:
+    text-analysis:
+        baseUrl: https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/0220c5a6-162c-4294-956f-44f897bd58bf?subscription-key=
+        key: 9a61d397342640cda626f877bc5d954f
+        suffixUrl: &verbose=true&timezoneOffset=0&q=
+
+
+
+
+
 
